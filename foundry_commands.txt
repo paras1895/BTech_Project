@@ -1,0 +1,4 @@
+sudo apt update && sudo apt install -y curl git build-essential
+curl -L https://getfoundry.sh/install | bash
+forge init
+forge install OpenZeppelin/openzeppelin-contracts

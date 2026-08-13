@@ -1,0 +1,1338 @@
+# Aave Liquidation Prediction Project — Dataset Master List
+
+## 1. MOST IMPORTANT DATASET — Aave V3 Cross-Chain Event Dataset
+
+Name:
+Aave V3 Cross-Chain Event-Level Dataset
+
+Source:
+Zenodo
+
+URL:
+https://doi.org/10.5281/zenodo.17898640
+
+This is probably the most useful ready-made dataset I found.
+
+It contains more than 50 million structured Aave V3 records across:
+
+* Ethereum
+* Arbitrum
+* Optimism
+* Polygon
+* Avalanche
+* Base
+
+It covers eight important event types:
+
+* Supply
+* Borrow
+* Withdraw
+* Repay
+* LiquidationCall
+* FlashLoan
+* ReserveDataUpdated
+* MintedToTreasury
+
+The data is already decoded and includes blockchain metadata and USD valuations.
+
+The dataset covers each chain from its Aave V3 deployment through October 1, 2025.
+
+Why it is useful:
+
+This single dataset can provide a large part of the core training data for our project.
+
+For our project, the most important files are:
+
+1. Supply
+2. Borrow
+3. Repay
+4. Withdraw
+5. LiquidationCall
+6. ReserveDataUpdated
+
+The LiquidationCall files are particularly important because they provide the actual liquidation labels/events.
+
+The ReserveDataUpdated files can help reconstruct changes in interest rates and reserve conditions.
+
+The dataset is split into CSV files, generally with a maximum of about 1 million records per file.
+
+Research paper:
+https://arxiv.org/abs/2512.11363
+
+## 2. Aave Official Protocol Subgraphs
+
+Name:
+Aave Protocol Subgraphs
+
+URL:
+https://github.com/aave/protocol-subgraphs
+
+This is an official Aave repository containing the subgraphs used to index Aave protocol data.
+
+It supports multiple Aave versions and networks.
+
+Important deployments include:
+
+* Ethereum V3
+* Ethereum V2
+* Polygon V3
+* Avalanche V3
+* Arbitrum V3
+* Optimism V3
+* Base V3
+* Scroll V3
+* ZKsync V3
+* Linea V3
+* Sonic V3
+* and others
+
+The subgraph exposes information such as:
+
+* Supply
+* Borrow
+* Repay
+* Withdraw
+* Liquidation
+* Reserve information
+* Interest rates
+* User transactions
+* Asset prices
+* User/reserve information
+
+This is not a traditional downloadable CSV.
+
+Instead, we query the GraphQL endpoint and create our own dataset.
+
+This may actually be better for the project because we can collect exactly the fields we need.
+
+## 3. Aave V3 Ethereum Graph Explorer
+
+Name:
+Aave V3 Ethereum Subgraph
+
+URL:
+https://thegraph.com/explorer/
+
+Aave has indexed subgraphs available through The Graph.
+
+This can be used to query historical Aave data.
+
+Useful entities include:
+
+* reserves
+* users
+* userTransactions
+* supplies
+* borrows
+* repayments
+* withdrawals
+* liquidations
+* reserve operations
+
+The official Aave subgraph documentation specifically demonstrates historical queries and pagination.
+
+Useful when we want to build our own custom dataset.
+
+## 4. Dune — Curated DeFi Lending Dataset
+
+Name:
+Dune Lending Data
+
+URL:
+https://docs.dune.com/data-catalog/curated/lending/overview
+
+This is one of the best sources for our project.
+
+Dune provides standardized DeFi lending data across many EVM chains.
+
+Important tables:
+
+* lending.supply
+* lending.borrow
+
+The supply table contains:
+
+* blockchain
+* project
+* version
+* transaction type
+* token
+* depositor
+* liquidator
+* amount
+* USD amount
+* block time
+* block number
+* transaction hash
+
+The borrow table contains:
+
+* blockchain
+* project
+* version
+* transaction type
+* loan type
+* token
+* borrower
+* liquidator
+* amount
+* USD amount
+* block time
+* block number
+* transaction hash
+
+Dune supports:
+
+* Aave
+* Compound
+* other lending protocols
+
+This is excellent for building SQL datasets.
+
+## 5. Dune — Lending Supply Data
+
+Name:
+Dune lending.supply
+
+URL:
+https://docs.dune.com/data-catalog/curated/lending/supply
+
+Useful for:
+
+* deposits
+* withdrawals
+* supply-side liquidations
+
+Important fields:
+
+* depositor
+* token
+* amount
+* amount_usd
+* block_time
+* block_number
+* liquidator
+* transaction hash
+
+For our project, this can help reconstruct the collateral side of positions.
+
+## 6. Dune — Lending Borrow Data
+
+Name:
+Dune lending.borrow
+
+URL:
+https://docs.dune.com/data-catalog/curated/lending/borrow
+
+Useful for:
+
+* borrows
+* repayments
+* borrow-side liquidations
+
+Important fields:
+
+* borrower
+* token
+* amount
+* amount_usd
+* block_time
+* block_number
+* loan type
+* liquidator
+* transaction hash
+
+This is extremely useful for reconstructing borrower histories.
+
+## 7. Flipside Crypto — Lending Deposits
+
+Name:
+Flipside ez_lending_deposits
+
+URL:
+https://docs.flipsidecrypto.xyz/blockchain-data/optimism/defi/ez-lending-deposits
+
+Flipside has standardized lending datasets.
+
+The lending datasets support protocols such as Aave and Compound.
+
+Useful fields include:
+
+* platform
+* depositor
+* token address
+* token symbol
+* amount
+* USD amount
+
+Flipside supports multiple blockchains, so we can use the appropriate chain dataset.
+
+## 8. Flipside Crypto — Lending Liquidations
+
+Name:
+Flipside ez_lending_liquidations
+
+URL:
+https://docs.flipsidecrypto.xyz/blockchain-data/polygon/defi/ez-lending-liquidations
+
+This is highly relevant.
+
+It contains liquidation information such as:
+
+* liquidator
+* borrower
+* collateral token
+* collateral amount
+* collateral USD value
+* debt token
+* debt token symbol
+* repaid amount
+* repaid USD value
+* transaction information
+
+This can be used to create the positive examples for our ML model:
+
+LIQUIDATION = 1
+
+## 9. Flipside Crypto — Lending Dataset Overview
+
+Name:
+Flipside Lending Data
+
+URL:
+https://docs.flipsidecrypto.xyz/blockchain-data/schema-overview
+
+Important tables include:
+
+* ez_lending_deposits
+* ez_lending_borrows
+* ez_lending_repayments
+* ez_lending_liquidations
+* ez_lending_flashloans
+
+This makes Flipside useful if we want to construct the complete lifecycle:
+
+Deposit
+→ Borrow
+→ Position changes
+→ Repay OR Liquidation
+
+## 10. Allium — Aave Lending Data
+
+Name:
+Allium Historical Lending Data
+
+URL:
+https://docs.allium.so/historical-data/lending
+
+Allium provides standardized historical lending data.
+
+It includes:
+
+* deposits
+* loans
+* repayments
+* withdrawals
+* liquidations
+* interest rates
+* TVL
+
+Aave is explicitly supported.
+
+This is another strong source for cross-checking our data.
+
+## 11. Allium — Aave Loans
+
+Name:
+Allium lending.loans
+
+URL:
+https://docs.allium.so/historical-data/lending/loans
+
+This contains borrowing events from:
+
+* Aave V1
+* Aave V2
+* Aave V3
+* Compound
+* Morpho
+
+For Aave, it can provide:
+
+* borrower address
+* token
+* loan amount
+* market
+* timestamp
+* transaction information
+
+Useful for constructing borrower histories.
+
+## 12. Allium — Aave Deposits
+
+Name:
+Allium lending.deposits
+
+URL:
+https://docs.allium.so/historical-data/lending/deposits
+
+Useful for:
+
+* collateral deposits
+* supply activity
+* deposit amount
+* token
+* user
+* timestamp
+
+This can help reconstruct the collateral side of a lending position.
+
+## 13. Allium — Aave Repayments
+
+Name:
+Allium lending.repayments
+
+URL:
+https://docs.allium.so/historical-data/lending/repayments
+
+Useful for understanding when users reduce their debt.
+
+Important fields include:
+
+* borrower
+* repayer
+* token
+* amount
+* timestamp
+* market
+* transaction information
+
+This is important because a user who repays before liquidation should not be incorrectly labeled as a liquidation.
+
+## 14. Allium — Aave Liquidations
+
+Name:
+Allium lending.liquidations
+
+URL:
+https://docs.allium.so/historical-data/lending/liquidations
+
+This is one of the most relevant sources.
+
+It provides:
+
+* borrower
+* liquidator
+* collateral token
+* collateral amount
+* debt information
+* market
+* timestamp
+* transaction information
+
+Use this to identify actual liquidation events.
+
+Our ML dataset can use these events to create the target variable.
+
+## 15. Allium — Aave Interest Rates
+
+Name:
+Allium lending.interest_rates
+
+URL:
+https://docs.allium.so/historical-data/lending/interest-rates
+
+This is useful for features such as:
+
+* supply APY
+* variable borrow APY
+* outstanding loans
+* liquidity
+* token
+* market
+* protocol
+
+For example:
+
+```text
+ETH borrow rate
+USDC borrow rate
+WETH supply rate
+Market utilization
+Outstanding debt
+```
+
+These can become ML features.
+
+## 16. Allium — Aave TVL
+
+Name:
+Allium lending.tvl_daily
+
+URL:
+https://docs.allium.so/historical-data/lending/tvl-daily
+
+Useful for:
+
+* protocol TVL
+* token-level TVL
+* market liquidity
+* historical market conditions
+
+This can provide macro-level DeFi features.
+
+## 17. Aavescan API
+
+Name:
+Aavescan API
+
+URL:
+https://aavescan.com/api/docs
+
+This is specifically designed around Aave.
+
+Available data includes:
+
+* latest markets
+* daily history
+* hourly history
+* protocol history
+* assets
+* oracle pricing
+* incentives
+* hourly snapshots
+* daily snapshots
+* ecosystem rates
+
+This is particularly useful for protocol-level and market-level features.
+
+For example:
+
+```text
+timestamp
+market
+liquidity
+borrow rate
+supply rate
+utilization
+asset
+price
+```
+
+This could complement transaction-level datasets.
+
+## 18. Aave Market Historical Data — Aavescan
+
+Name:
+Aave Daily/Hourly Market History
+
+Source:
+Aavescan
+
+URL:
+https://aavescan.com/api/docs
+
+Use the:
+
+* Aave Daily History
+* Aave Hourly History
+* Aave Protocol History
+* Aave Hourly Snapshots
+* Aave Daily Snapshots
+
+For our project, hourly data could be particularly useful because liquidation prediction is a time-sensitive problem.
+
+## 19. CoinGecko Historical Crypto Prices
+
+Name:
+CoinGecko Historical Data
+
+URL:
+https://www.coingecko.com/en/coins/aave/historical_data
+
+CoinGecko provides historical:
+
+* price
+* market capitalization
+* trading volume
+* dates
+
+Although the page above is for the AAVE token, CoinGecko also provides historical data for assets such as:
+
+* ETH
+* WETH
+* BTC
+* USDC
+* USDT
+* DAI
+* LINK
+* WBTC
+* AAVE
+* other assets
+
+For our model, asset price data is extremely important.
+
+Example:
+
+```text
+ETH price
+ETH price change 1h
+ETH price change 6h
+ETH price change 24h
+ETH volatility
+BTC volatility
+```
+
+These can become features.
+
+## 20. Ethereum Blockchain Public Dataset — Google BigQuery
+
+Name:
+Ethereum Public Dataset
+
+URL:
+https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset
+
+This provides raw Ethereum blockchain data.
+
+It can contain:
+
+* blocks
+* transactions
+* logs
+* token transfers
+* smart contract information
+
+This is useful if we want to go directly to the blockchain rather than depending entirely on Aave-specific APIs.
+
+It can be useful for:
+
+* transaction analysis
+* event logs
+* gas prices
+* block timestamps
+* transaction ordering
+* token transfers
+
+The data can be exported into CSV/JSON/etc.
+
+## 21. Token Terminal — Aave V3 Ethereum Contract Data
+
+Name:
+Token Terminal Aave V3 Ethereum Contract Dataset
+
+URL:
+https://tokenterminal.com/docs/queries/tt-contracts/aave_v3_ethereum
+
+Token Terminal exposes contract-level Aave V3 Ethereum event data.
+
+Examples include:
+
+* aToken events
+* debt token events
+* flash loans
+* reserve initialization
+* protocol events
+* transaction hashes
+* block timestamps
+* block numbers
+
+This can be useful when we need lower-level contract event data.
+
+## 22. Web3 Ethereum DeFi — Aave V3 Liquidations Dataset Generator
+
+Name:
+web3-ethereum-defi Aave V3 liquidation scanner
+
+URL:
+https://web3-ethereum-defi.readthedocs.io/tutorials/aave-v3-liquidations.html
+
+This is particularly interesting because it provides code to scan Aave V3 liquidation events and write them to a Parquet file.
+
+The documentation describes a script:
+
+```text
+scripts/aave-v3/scan-liquidations.py
+```
+
+It scans chains using RPC endpoints and creates a liquidation dataset.
+
+This means that even if we cannot find a ready-made CSV we like, we can generate our own.
+
+This is an excellent backup method.
+
+## 23. Aave V2/V3 Liquidation Research Dataset
+
+Name:
+Dataset used in "Do liquidations discourage lending in DeFi?"
+
+URL:
+https://www.sciencedirect.com/science/article/pii/S016517652500374X
+
+The research uses a comprehensive dataset of Aave Ethereum V2 and V3 liquidation events.
+
+The study covers approximately:
+
+March 2022 → December 2024
+
+This is useful mainly as a research/reference dataset.
+
+It is particularly valuable because it demonstrates that researchers have already constructed a large Aave liquidation dataset for empirical research.
+
+Use the paper to understand how researchers structure liquidation-event analysis.
+
+## 24. Aave V3 Simulator Dataset
+
+Name:
+From Risk to Rescue — Aave V3 Simulator Dataset
+
+URL:
+https://doi.org/10.6084/m9.figshare.31058368
+
+This is a newer research dataset associated with an Aave V3 simulator.
+
+The associated research uses a cohort of 4,882 high-risk user profiles.
+
+It is especially useful for understanding how a high-fidelity Aave simulator can be combined with risk prediction.
+
+Associated simulator:
+
+https://github.com/brains-group/Aave-Simulator
+
+This is NOT our primary real-world dataset.
+
+Instead, it can be used as a reference or supplementary dataset for simulation experiments.
+
+## 25. Aave V3 Simulator Research Paper
+
+Name:
+From Risk to Rescue: An Agentic Survival Analysis Framework for Liquidation Prevention
+
+URL:
+https://arxiv.org/abs/2604.14583
+
+This paper is highly relevant to our project because it uses:
+
+* Aave V3
+* liquidation prediction
+* risk modeling
+* XGBoost
+* survival analysis
+* high-risk user profiles
+* a protocol-faithful simulator
+
+We should study this paper carefully before finalizing our methodology.
+
+Important warning:
+
+We should NOT simply copy their methodology.
+
+Instead, use it as related work and identify our own research gap.
+
+## 26. Aave V3 Smart Contract Repository
+
+Name:
+Aave V3 Origin
+
+URL:
+https://github.com/aave-dao/aave-v3-origin
+
+This is not a dataset.
+
+It is extremely useful for understanding the exact protocol mechanics.
+
+It contains the actual Aave V3 smart contracts.
+
+Important code includes:
+
+* liquidation logic
+* reserve logic
+* validation logic
+* interest rate logic
+* user configuration
+* data structures
+
+We should use this to make our Foundry simulator more realistic.
+
+## 27. Aave Liquidation Logic
+
+Name:
+Aave V3 LiquidationLogic.sol
+
+URL:
+https://github.com/aave-dao/aave-v3-origin/blob/main/src/contracts/protocol/libraries/logic/LiquidationLogic.sol
+
+This is particularly important for our simulator.
+
+It shows how Aave handles liquidation.
+
+We should study it before implementing our simplified Solidity version.
+
+We do NOT need to copy the entire contract.
+
+Instead, understand the relevant mechanics and implement a simplified version for experimentation.
+
+## 28. Aave V3 Event Definitions
+
+Name:
+Aave V3 Protocol Subgraph Event Definitions
+
+URL:
+https://github.com/aave/protocol-subgraphs/blob/main/templates/v3.subgraph.template.yaml
+
+This tells us exactly which important Aave events are indexed.
+
+Important events include:
+
+```text
+Supply
+Withdraw
+Borrow
+Repay
+SwapBorrowRateMode
+FlashLoan
+LiquidationCall
+ReserveDataUpdated
+UserEModeSet
+IsolationModeTotalDebtUpdated
+```
+
+This is useful when designing our dataset schema.
+
+# 29. Substreams Aave V2 Polygon Dataset
+
+Name:
+Aave V2 Polygon Substreams Package
+
+URL:
+https://substreams.dev/packages/aave-v2-polygon/latest
+
+This is another interesting data source.
+
+It provides tables such as:
+
+```text
+aave_deposits
+aave_withdrawals
+aave_borrows
+aave_repays
+aave_liquidations
+aave_flash_loans
+aave_rate_swaps
+aave_rebalances
+aave_reserve_rate_history
+aave_reserves
+aave_user_collateral
+```
+
+This is especially useful if we decide to study Aave V2 or Polygon as an additional experiment.
+
+# 30. Microquery Blockchain Dataset
+
+Name:
+Microquery Ethereum Lending Dataset
+
+URL:
+https://microquery.dev/datasets
+
+It includes an Ethereum lending table covering:
+
+* Aave V2
+* Aave V3
+* Compound V3
+
+Fields include:
+
+* contract address
+* transaction hash
+* log index
+* block number
+* timestamp
+* protocol
+* event type
+* asset
+* user
+* amount
+* borrow rate mode
+* collateral asset
+* collateral amount
+
+This is useful because it provides a relatively simple tabular structure suitable for ML.
+
+# 31. Research Paper — Toxic Liquidation Spirals
+
+Name:
+Toxic Liquidation Spirals
+
+URL:
+https://arxiv.org/abs/2212.07306
+
+This is not a dataset, but it is highly relevant background research.
+
+It studies an important Aave V2 liquidation event involving CRV.
+
+Useful for:
+
+* understanding liquidation cascades
+* understanding bad debt
+* understanding collateral/debt interactions
+* finding potential stress-test scenarios for our simulator
+
+We can use historical events like this as stress scenarios.
+
+# 32. Aave Governance / Risk Reports
+
+Name:
+Aave Governance Forum
+
+URL:
+https://governance.aave.com/
+
+Aave governance posts can contain historical risk analysis.
+
+For example, Chaos Labs publishes market/liquidation analyses.
+
+These can provide:
+
+* liquidation statistics
+* market conditions
+* asset-specific risk
+* liquidation volumes
+* unique accounts
+* liquidator information
+
+These aren't conventional datasets, but they can help validate our results.
+
+# 33. Chaos Labs Aave Market Risk Reports
+
+Example:
+
+URL:
+https://governance.aave.com/t/chaos-labs-market-alert-high-price-volatility-and-liquidations-04-13-2024/17360
+
+This report analyzes a major period of Aave liquidations.
+
+It contains statistics about:
+
+* liquidation count
+* liquidation volume
+* affected accounts
+* liquidators
+* collateral assets
+* affected chains
+
+These reports can be useful for validating our model against known stress events.
+
+# 34. Academic Aave Cross-Chain Dataset
+
+Name:
+A Cross-Chain Event-Driven Data Infrastructure for Aave Protocol Analytics and Applications
+
+Paper:
+
+https://arxiv.org/abs/2512.11363
+
+Dataset:
+
+https://doi.org/10.5281/zenodo.17898640
+
+This deserves special attention.
+
+The dataset contains more than 50 million Aave V3 records across six chains.
+
+The event types are:
+
+```text
+Supply
+Borrow
+Withdraw
+Repay
+LiquidationCall
+FlashLoan
+ReserveDataUpdated
+MintedToTreasury
+```
+
+This is probably the single most important dataset for our project.
+
+# 35. Recommended Market Price Dataset Sources
+
+For liquidation prediction, Aave transaction data alone is not enough.
+
+We also need market prices.
+
+Potential sources:
+
+1. CoinGecko
+   https://www.coingecko.com/
+
+2. Chainlink price feeds
+   https://data.chain.link/
+
+3. Aave oracle/subgraph data
+   https://github.com/aave/protocol-subgraphs
+
+4. Aavescan
+   https://aavescan.com/api/docs
+
+5. Ethereum on-chain data
+   https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset
+
+The best choice will depend on the time resolution we need.
+
+# 36. Recommended Data Categories
+
+Our final dataset should ideally contain these categories.
+
+## A. User Position Data
+
+```text
+user
+timestamp
+collateral_asset
+collateral_amount
+collateral_value
+debt_asset
+debt_amount
+debt_value
+health_factor
+LTV
+```
+
+## B. Transaction Data
+
+```text
+supply
+withdraw
+borrow
+repay
+liquidation
+timestamp
+block_number
+transaction_hash
+```
+
+## C. Market Data
+
+```text
+asset_price
+price_change_1h
+price_change_6h
+price_change_24h
+volatility
+trading_volume
+market_cap
+```
+
+## D. Aave Market Data
+
+```text
+utilization
+supply_rate
+borrow_rate
+available_liquidity
+total_supply
+total_debt
+reserve_factor
+```
+
+## E. Liquidation Data
+
+```text
+liquidation_timestamp
+borrower
+liquidator
+collateral_asset
+collateral_amount
+debt_asset
+debt_repaid
+liquidation_value
+```
+
+## F. Blockchain Data
+
+```text
+block_timestamp
+block_number
+gas_price
+transaction_hash
+log_index
+```
+
+# 37. What Should Become the ML Target?
+
+The most important thing is to construct a label.
+
+For example:
+
+```text
+liquidated_within_24h = 1
+```
+
+or:
+
+```text
+liquidated_within_24h = 0
+```
+
+Then our training data becomes:
+
+```text
+Position at time T
+        +
+Market conditions at time T
+        +
+Aave conditions at time T
+        ↓
+Will liquidation happen within 24 hours?
+        ↓
+YES / NO
+```
+
+We can later experiment with:
+
+```text
+1 hour
+6 hours
+12 hours
+24 hours
+48 hours
+```
+
+# 38. My Recommended Combination
+
+DO NOT download everything above.
+
+That would create unnecessary complexity.
+
+For the actual BTech project, I recommend starting with these:
+
+### PRIMARY DATA
+
+1. Aave V3 Cross-Chain Dataset
+   https://doi.org/10.5281/zenodo.17898640
+
+### SECONDARY / VALIDATION
+
+2. Aave Official Subgraphs
+   https://github.com/aave/protocol-subgraphs
+
+3. Dune Lending Data
+   https://docs.dune.com/data-catalog/curated/lending/overview
+
+4. Flipside Lending Data
+   https://docs.flipsidecrypto.xyz/blockchain-data/schema-overview
+
+### MARKET DATA
+
+5. CoinGecko
+   https://www.coingecko.com/
+
+6. Aavescan
+   https://aavescan.com/api/docs
+
+### PROTOCOL/RISK DATA
+
+7. Aave V3 source code
+   https://github.com/aave-dao/aave-v3-origin
+
+8. Aave V3 subgraph definitions
+   https://github.com/aave/protocol-subgraphs
+
+### OPTIONAL
+
+9. Allium
+   https://docs.allium.so/historical-data/lending
+
+10. Ethereum BigQuery
+    https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset
+
+11. Web3 Ethereum DeFi liquidation scanner
+    https://web3-ethereum-defi.readthedocs.io/tutorials/aave-v3-liquidations.html
+
+12. Aave V3 simulator dataset
+    https://doi.org/10.6084/m9.figshare.31058368
+
+# 39. Best Starting Dataset
+
+If we start tomorrow, I would download:
+
+```text
+Aave V3 Cross-Chain Dataset
+        ↓
+Ethereum
+        ↓
+Supply
+Borrow
+Repay
+Withdraw
+LiquidationCall
+ReserveDataUpdated
+```
+
+We DON'T initially need all six chains.
+
+Start with:
+
+**Aave V3 Ethereum**
+
+Then build the ML dataset.
+
+After the pipeline works, we can add:
+
+**Arbitrum + Base + Polygon**
+
+This gives us a cross-chain generalization experiment.
+
+# 40. Final Recommended Data Pipeline
+
+```text
+Aave V3 Event Dataset
+        +
+Market Price Dataset
+        +
+Aave Reserve/Risk Data
+        ↓
+       JOIN
+        ↓
+Historical User Positions
+        ↓
+Feature Engineering
+        ↓
+Create Labels
+        ↓
+Liquidated within X hours?
+        ↓
+Train/Test Split by TIME
+        ↓
+ML Models
+        ↓
+Logistic Regression
+Random Forest
+XGBoost
+        ↓
+Compare Performance
+        ↓
+Risk Prediction Dashboard
+```
+
+# 41. Very Important Research Rule
+
+Do NOT randomly split individual rows into train/test.
+
+Because blockchain data is time-series data, random splitting can cause data leakage.
+
+A better approach is:
+
+```text
+2022 ───────── 2023 ───────── 2024 ───────── 2025
+ TRAIN DATA                         TEST DATA
+```
+
+For example:
+
+```text
+Training:
+2022–2024
+
+Validation:
+early 2025
+
+Test:
+later 2025
+```
+
+The exact dates will depend on the dataset.
+
+This is important for making the research academically credible.
+
+# 42. Final Dataset Hierarchy
+
+Think about the sources like this:
+
+TIER 1 — CORE
+
+Aave V3 event dataset
+
+TIER 2 — IMPORTANT
+
+Aave subgraph
+Dune
+Flipside
+
+TIER 3 — MARKET FEATURES
+
+CoinGecko
+Chainlink
+Aavescan
+
+TIER 4 — RAW BLOCKCHAIN
+
+Ethereum BigQuery
+RPC
+Etherscan/block explorers
+
+TIER 5 — RESEARCH/SIMULATION
+
+Aave simulator
+Foundry
+Figshare dataset
+
+We should build the project around Tier 1 + Tier 3 first.
+
+Then use Tier 2 for validation/cross-checking.
+
+Tier 4 and Tier 5 are optional extensions.
+
+# 43. The Most Important Files/Events for Our Project
+
+If we use the large Aave V3 dataset, prioritize:
+
+1. LiquidationCall
+2. Borrow
+3. Supply
+4. Repay
+5. Withdraw
+6. ReserveDataUpdated
+
+In that order.
+
+LiquidationCall tells us:
+
+"Who actually got liquidated?"
+
+Borrow/Supply/Repay/Withdraw help us reconstruct:
+
+"What was the user's position before liquidation?"
+
+ReserveDataUpdated helps us understand:
+
+"What was happening in the Aave market at that time?"
+
+Market-price data tells us:
+
+"What was happening to the underlying asset?"
+
+Together, these allow us to construct:
+
+```text
+USER POSITION
++
+MARKET CONDITIONS
++
+PROTOCOL CONDITIONS
+        ↓
+LIQUIDATION RISK
+```
+
+# 44. Final Recommendation
+
+The project should NOT be:
+
+"Download one Aave CSV and train an AI."
+
+It should be:
+
+"Construct a historical Aave lending-position dataset by combining Aave V3 event-level data with market-price and protocol-state data, reconstruct borrower positions over time, label positions according to whether liquidation occurs within a future time horizon, and evaluate machine-learning models for early liquidation-risk prediction."
+
+That is the research-grade version of the project.
