@@ -1,0 +1,57 @@
+ai-yield-optimizer/
+│
+├── foundry.toml
+├── remappings.txt
+├── .env
+├── .gitignore
+│
+├── src/
+│   ├── interfaces/
+│   │   ├── IAavePool.sol
+│   │   └── IERC20.sol
+│   │
+│   ├── adapters/
+│   │   └── AaveAdapter.sol
+│   │
+│   ├── optimizer/
+│   │   ├── YieldOptimizer.sol
+│   │   └── StrategyRegistry.sol
+│   │
+│   ├── simulation/
+│   │   ├── UserSimulator.sol
+│   │   ├── MarketSimulator.sol
+│   │   └── ScenarioRunner.sol
+│   │
+│   └── mocks/
+│       └── MockERC20.sol
+│
+├── script/
+│   ├── Deploy.s.sol
+│   ├── DeploySimulation.s.sol
+│   └── GenerateScenario.s.sol
+│
+├── test/
+│   ├── YieldOptimizer.t.sol
+│   ├── UserSimulator.t.sol
+│   └── Scenario.t.sol
+│
+├── python/
+│   ├── data/
+│   │   ├── raw/
+│   │   └── processed/
+│   │
+│   ├── features/
+│   │   └── build_features.py
+│   │
+│   ├── models/
+│   │   ├── baseline.py
+│   │   ├── train.py
+│   │   └── inference.py
+│   │
+│   └── evaluation/
+│       └── backtest.py
+│
+├── data/
+│   └── README.md
+│
+└── README.md

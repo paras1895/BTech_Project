@@ -1,0 +1,68 @@
+[✓] Foundry
+[✓] Anvil
+[✓] Aave fork
+[ ] Deploy adapter
+[ ] Read Aave reserve state
+[ ] Supply USDC
+[ ] Withdraw USDC
+
+simulation
+[ ] User generator
+[ ] User profiles
+[ ] Market scenarios
+[ ] Time advancement
+[ ] Supply/withdraw actions
+[ ] Borrow/repay actions
+[ ] Liquidation scenarios
+
+dataset
+[ ] Event collection
+[ ] State snapshots
+[ ] Action logging
+[ ] Reward calculation
+[ ] Parquet/CSV dataset
+
+baseline
+[ ] Highest APY
+[ ] Equal weight
+[ ] Risk-adjusted APY
+[ ] Rule-based rebalance
+
+ml
+[ ] Feature engineering
+[ ] Train/validation split by time
+[ ] Gradient boosting
+[ ] Backtesting
+[ ] Compare against baselines
+
+rl
+[ ] Environment
+[ ] State
+[ ] Action space
+[ ] Reward
+[ ] PPO/SAC/etc.
+[ ] Walk-forward evaluation
+
+solidity execution
+
+AI
+ ↓
+allocation
+ ↓
+risk constraints
+ ↓
+YieldOptimizer
+ ↓
+AaveAdapter
+ ↓
+Aave
+
+testing
+[ ] Oracle manipulation scenarios
+[ ] Liquidity shocks
+[ ] Stablecoin depeg
+[ ] Extreme utilization
+[ ] Gas spikes
+[ ] Failed transactions
+[ ] Stale model
+[ ] Strategy failure
