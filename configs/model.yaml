@@ -1,0 +1,15 @@
+name: ridge_supply_apy
+version: "0.1.0"
+model_type: ridge
+alpha: 1.0
+horizon_steps: 1
+train_fraction: 0.70
+validation_fraction: 0.15
+test_fraction: 0.15
+synthetic_rows: 720
+feature_windows: [6, 24]
+primary_target: future_supply_apy
+data_label: synthetic_local
+notes: >
+  Fitted on generated local series so inference endpoints work offline.
+  This is not a claim that the model predicts live Aave yields.

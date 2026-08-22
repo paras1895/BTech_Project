@@ -1,0 +1,9 @@
+lambda_risk: 1.0
+lambda_cost: 0.05
+lambda_concentration: 0.25
+lambda_liquidation: 0.40
+max_weight: 0.55
+min_weight: 0.0
+transaction_cost: 0.001
+risk_free_rate: 0.03
+max_volatility: 0.80

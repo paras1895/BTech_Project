@@ -1,0 +1,62 @@
+# Educational simulation assets. These are not live Aave listings.
+assets:
+  - symbol: USDC
+    name: USD Coin (simulated)
+    decimals: 6
+    oracle_price: 1.0
+    ltv: 0.80
+    liquidation_threshold: 0.85
+    liquidation_bonus: 0.05
+    reserve_factor: 0.10
+    initial_supplied: 5_000_000
+    initial_borrowed: 2_200_000
+    irm:
+      base_rate: 0.02
+      kink: 0.80
+      slope1: 0.04
+      slope2: 0.75
+  - symbol: WETH
+    name: Wrapped Ether (simulated)
+    decimals: 18
+    oracle_price: 3200.0
+    ltv: 0.80
+    liquidation_threshold: 0.825
+    liquidation_bonus: 0.05
+    reserve_factor: 0.15
+    initial_supplied: 8_000
+    initial_borrowed: 3_200
+    irm:
+      base_rate: 0.01
+      kink: 0.80
+      slope1: 0.03
+      slope2: 1.20
+  - symbol: WBTC
+    name: Wrapped Bitcoin (simulated)
+    decimals: 8
+    oracle_price: 64000.0
+    ltv: 0.70
+    liquidation_threshold: 0.75
+    liquidation_bonus: 0.06
+    reserve_factor: 0.20
+    initial_supplied: 250
+    initial_borrowed: 80
+    irm:
+      base_rate: 0.01
+      kink: 0.75
+      slope1: 0.04
+      slope2: 1.50
+  - symbol: DAI
+    name: Dai (simulated)
+    decimals: 18
+    oracle_price: 1.0
+    ltv: 0.77
+    liquidation_threshold: 0.82
+    liquidation_bonus: 0.05
+    reserve_factor: 0.10
+    initial_supplied: 4_000_000
+    initial_borrowed: 1_600_000
+    irm:
+      base_rate: 0.02
+      kink: 0.80
+      slope1: 0.04
+      slope2: 0.80
