@@ -1,0 +1,43 @@
+hours_per_year: 8760
+step_hours: 1
+default_steps: 24
+default_users: 10
+default_capital: 100000.0
+default_seed: 42
+protocol_name: educational_aave_inspired_simulation
+not_aave: true
+scenarios:
+  normal:
+    price_vol: 0.012
+    utilization_shock: 0.0
+    liquidity_shock: 0.0
+  stable:
+    price_vol: 0.003
+    utilization_shock: 0.0
+    liquidity_shock: 0.0
+  high_volatility:
+    price_vol: 0.045
+    utilization_shock: 0.0
+    liquidity_shock: 0.0
+  liquidity_crisis:
+    price_vol: 0.02
+    utilization_shock: 0.08
+    liquidity_shock: 0.25
+  interest_rate_shock:
+    price_vol: 0.015
+    utilization_shock: 0.18
+    liquidity_shock: 0.05
+  asset_price_crash:
+    price_vol: 0.03
+    utilization_shock: 0.04
+    liquidity_shock: 0.0
+    crash_return: -0.18
+  utilization_spike:
+    price_vol: 0.01
+    utilization_shock: 0.22
+    liquidity_shock: 0.0
+  black_swan_synthetic:
+    price_vol: 0.08
+    utilization_shock: 0.15
+    liquidity_shock: 0.35
+    crash_return: -0.35
